@@ -420,66 +420,184 @@ section{padding:100px 60px;}
 }
 
 /* WORK */
-#work{border-top:1px solid rgba(0,212,255,0.1);}
-.work-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:50px;}
-.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.project-card{
-  border-radius:16px;overflow:hidden;
-  position:relative;cursor:none;
-  border:1px solid rgba(0,212,255,0.1);
-  transition:all 0.4s;
+/* ===== WORK SECTION ===== */
+#work {
+  border-top: 1px solid rgba(0,212,255,0.1);
 }
-.project-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,153,255,0.15);border-color:rgba(0,212,255,0.35);}
-.project-thumb{
-  aspect-ratio:4/3;position:relative;overflow:hidden;
-}
-.project-card:nth-child(1) .project-thumb{background:linear-gradient(135deg,#0a2040,#1a4a80);}
-.project-card:nth-child(2) .project-thumb{background:linear-gradient(135deg,#061828,#123456);}
-.project-card:nth-child(3) .project-thumb{background:linear-gradient(135deg,#0d2a50,#1a5080);}
-.project-card:nth-child(4) .project-thumb{background:linear-gradient(135deg,#081520,#102040);}
-.project-card:nth-child(5) .project-thumb{background:linear-gradient(135deg,#0a1e38,#163860);}
-.project-card:nth-child(6) .project-thumb{background:linear-gradient(135deg,#0c2248,#183070);}
-.play-btn{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:2.2rem;color:rgba(255,255,255,0.2);
-}
-.project-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(10,22,40,0.95) 0%,rgba(10,22,40,0.6) 50%,transparent 100%);
-  display:flex;flex-direction:column;justify-content:flex-end;padding:20px;
-  opacity:0;transition:opacity 0.35s;
-}
-.project-card:hover .project-overlay{opacity:1;}
-.project-type{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--neon);margin-bottom:6px;}
-.project-title-ov{font-family:'Playfair Display',serif;font-size:1.2rem;color:white;margin-bottom:10px;}
-.project-cta{
-  font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--neon);display:flex;align-items:center;gap:6px;
-  text-decoration:none;
-}
-.project-info{padding:16px;background:rgba(255,255,255,0.6);backdrop-filter:blur(10px);}
-.project-cat{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
-.project-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);}
 
-/* Video embed styles */
-.video-embed {
+.work-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+}
+
+/* ===== ویدیوی افقی بالا ===== */
+.horizontal-video-container {
+  margin-bottom: 50px;
+}
+
+.horizontal-video-container .video-card {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ===== بخش ویدیوهای عمودی ===== */
+.vertical-videos-wrapper {
+  margin-top: 40px;
+}
+
+.shorts-title {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* اسکرول افقی */
+.vertical-videos-scroll {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* استایل اسکرول‌بار */
+.vertical-videos-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.vertical-videos-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0,153,255,0.3);
+  border-radius: 20px;
+}
+
+.vertical-videos-scroll::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+  border-radius: 20px;
+}
+
+/* کارت‌های عمودی */
+.vertical-videos-scroll .video-card {
+  min-width: 450px;
+  max-width: 450px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+/* ===== کارت‌های ویدیو ===== */
+.video-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0,212,255,0.15);
+  transition: all 0.4s;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 20px 60px rgba(0,153,255,0.18);
+  border-color: rgba(0,212,255,0.4);
+}
+
+/* ===== ویدیو Wrapper ===== */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.video-wrap iframe {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  border: 0;
-  z-index: 1;
+  border: none;
+  display: block;
 }
 
-/* Hide play button when video exists */
-.project-thumb:has(.video-embed) .play-btn {
-  display: none;
+/* ویدیو عمودی 9:16 */
+.video-wrap--short {
+  padding-bottom: 177.78%;
 }
 
-/* Vertical video cards (for Shorts) */
-.project-card.vertical .project-thumb {
-  aspect-ratio: 9/16;
+/* ویدیو افقی 16:9 */
+.video-wrap--wide {
+  padding-bottom: 56.25%;
+}
+
+/* ===== اطلاعات ویدیو ===== */
+.video-info {
+  padding: 20px 22px 24px;
+}
+
+.video-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.vtag {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(0,153,255,0.09);
+  border: 1px solid rgba(0,153,255,0.2);
+  color: var(--blue-dark);
+  font-weight: 500;
+}
+
+.vtag--neon {
+  background: rgba(0,212,255,0.1);
+  border-color: rgba(0,212,255,0.35);
+  color: var(--neon2);
+}
+
+.video-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.video-desc {
+  font-size: 0.83rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ===== موبایل ===== */
+@media (max-width: 768px) {
+  .work-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .vertical-videos-scroll .video-card {
+    min-width: 260px;
+    max-width: 260px;
+  }
+
+  .video-info {
+    padding: 16px;
+  }
+
+  .shorts-title {
+    font-size: 1.2rem;
+  }
 }
 
 
@@ -652,6 +770,7 @@ footer{
   #about{grid-template-columns:1fr;gap:48px;}
   .about-visual{max-width:400px;margin:0 auto;}
   .services-grid{grid-template-columns:1fr 1fr;}
+  .videos-grid{grid-template-columns:1fr 1fr;}
   .tools-grid{grid-template-columns:1fr 1fr;}
   .process-steps{grid-template-columns:1fr 1fr;}
   .process-steps::before{display:none;}
@@ -726,18 +845,35 @@ footer{
   .stats-bar{flex-direction:column;gap:24px;padding:28px 24px;}
   .stat-item:not(:last-child)::after{display:none;}
   .services-grid{grid-template-columns:1fr;}
-  .projects-grid{grid-template-columns:1fr 1fr;}
+  .videos-grid{grid-template-columns:1fr;}
   .tools-grid{grid-template-columns:1fr 1fr;}
   .process-steps{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:10px;text-align:center;padding:20px;}
   .work-header{flex-direction:column;gap:16px;align-items:flex-start;}
 }
 @media(max-width:480px){
-  .projects-grid{grid-template-columns:1fr;}
+  .videos-grid{grid-template-columns:1fr;}
   .tools-grid{grid-template-columns:1fr;}
   .contact-big{font-size:2.2rem;}
   section{padding:60px 16px;}
   nav{padding:14px 16px;}
+}
+/* --- ویدیو افقی --- */
+.horizontal-video {
+  margin-bottom: 40px;
+}
+
+.project-card.horizontal {
+  width: 100%;
+}
+
+.horizontal-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #0d1b2a;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
 }
 </style>
 </head>
@@ -879,127 +1015,63 @@ footer{
     </div>
     <a href="#contact" class="btn-outline">Commission a Project →</a>
   </div>
-  <div class="projects-grid">
-    
-    <!-- PROJECT 1: UI/SaaS Animation (Horizontal) -->
-    <div class="project-card reveal">
-      <div class="project-thumb">
-        <iframe
-          src="https://www.youtube.com/embed/W-nWqliREQ4"
-          class="video-embed"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-        <div class="project-overlay">
-          <div class="project-type">Motion Design · 2024</div>
-          <div class="project-title-ov">UI/SaaS Animation</div>
-          <a href="https://www.youtube.com/watch?v=W-nWqliREQ4" target="_blank" class="project-cta">Watch on YouTube →</a>
-        </div>
+
+  <!-- ویدیوی افقی (تنها در بالا) -->
+  <div class="horizontal-video-container reveal">
+    <div class="video-card">
+      <div class="video-wrap video-wrap--wide">
+        <iframe src="https://www.youtube.com/embed/W-nWqliREQ4" title="UI/SaaS Animation | Motion Design Portfolio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <div class="project-info">
-        <div class="project-cat">Motion Graphics</div>
-        <div class="project-name">UI/SaaS Animation</div>
+      <div class="video-info">
+        <div class="video-tags"><span class="vtag">UI Animation</span><span class="vtag vtag--neon">SaaS</span></div>
+        <div class="video-title">UI/SaaS Animation</div>
+        <p class="video-desc">Clean interface animations, smooth motion design & professional transitions for SaaS products.</p>
       </div>
     </div>
+  </div>
 
-    <!-- PROJECT 2: Dynamic Motion Graphics (Vertical Short) -->
-    <div class="project-card reveal vertical">
-      <div class="project-thumb">
-        <iframe
-          src="https://www.youtube.com/embed/RgJQZwSQaW4"
-          class="video-embed"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-        <div class="project-overlay">
-          <div class="project-type">Social Media · 2026</div>
-          <div class="project-title-ov">Dynamic Motion Graphics</div>
-          <a href="https://youtube.com/shorts/RgJQZwSQaW4" target="_blank" class="project-cta">Watch on YouTube →</a>
+  <!-- ویدیوهای عمودی (کشویی افقی) -->
+  <div class="vertical-videos-wrapper reveal">
+    <h3 class="shorts-title">Shorts & Vertical Content</h3>
+    <div class="vertical-videos-scroll">
+
+      <div class="video-card">
+        <div class="video-wrap video-wrap--short">
+          <iframe src="https://www.youtube.com/embed/RgJQZwSQaW4" title="Dynamic Motion Graphics Edit | 2026 Trends" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <div class="video-tags"><span class="vtag">Motion Graphics</span><span class="vtag vtag--neon">2026 Trends</span></div>
+          <div class="video-title">Dynamic Motion Graphics Edit</div>
+          <p class="video-desc">Trending motion graphics, smooth transitions, professional color grading & modern visual effects.</p>
         </div>
       </div>
-      <div class="project-info">
-        <div class="project-cat">Trending Edits</div>
-        <div class="project-name">Dynamic Motion Graphics Edit</div>
-      </div>
-    </div>
 
-    <!-- PROJECT 3: Viral Minimal Style (Vertical Short) -->
-    <div class="project-card reveal vertical">
-      <div class="project-thumb">
-        <iframe
-          src="https://www.youtube.com/embed/haDqFDcQ96Y"
-          class="video-embed"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-        <div class="project-overlay">
-          <div class="project-type">Social Media · 2024</div>
-          <div class="project-title-ov">Viral Minimal Style</div>
-          <a href="https://youtube.com/shorts/haDqFDcQ96Y" target="_blank" class="project-cta">Watch on YouTube →</a>
+      <div class="video-card">
+        <div class="video-wrap video-wrap--short">
+          <iframe src="https://www.youtube.com/embed/haDqFDcQ96Y" title="Viral Minimal Style Edit | Iman Gadzhi Inspired" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <div class="video-tags"><span class="vtag">Minimal</span><span class="vtag vtag--neon">Viral Style</span></div>
+          <div class="video-title">Viral Minimal Style Edit</div>
+          <p class="video-desc">Clean minimal aesthetic, fast-paced storytelling & social media optimized editing.</p>
         </div>
       </div>
-      <div class="project-info">
-        <div class="project-cat">Viral Content</div>
-        <div class="project-name">Viral Minimal Style Edit</div>
-      </div>
-    </div>
 
-    <!-- PROJECT 4: Space & Galaxy Animation (Vertical Short) -->
-    <div class="project-card reveal vertical">
-      <div class="project-thumb">
-        <iframe
-          src="https://www.youtube.com/embed/K3uphNJC4Bw"
-          class="video-emb          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-        <div class="project-overlay">
-          <div class="project-type">Cinematic · 2024</div>
-          <div class="project-title-ov">Space & Galaxy Animation</div>
-          <a href="https://youtube.com/shorts/K3uphNJC4Bw" target="_blank" class="project-cta">Watch on YouTube →</a>
+      <div class="video-card">
+        <div class="video-wrap video-wrap--short">
+          <iframe src="https://www.youtube.com/embed/K3uphNJC4Bw" title="Space & Galaxy Visual Animation | Motion Graphics" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <div class="video-tags"><span class="vtag">Space & Galaxy</span><span class="vtag vtag--neon">Cinematic</span></div>
+          <div class="video-title">Space & Galaxy Visual Animation</div>
+          <p class="video-desc">Cinematic galaxy visuals, smooth motion graphics & atmospheric storytelling.</p>
         </div>
       </div>
-      <div class="project-info">
-        <div class="project-cat">Visual Effects</div>
-        <div class="project-name">Space & Galaxy Visuals</div>
-      </div>
-    </div>
 
-    <!-- PROJECT 5 -->
-    <div class="project-card reveal">
-      <div class="project-thumb">
-        <div class="play-btn">▶</div>
-        <div class="project-overlay">
-          <div class="project-type">Coming Soon</div>
-          <div class="project-title-ov">New Project</div>
-        </div>
-      </div>
-      <div class="project-info">
-        <div class="project-cat">Future Work</div>
-        <div class="project-name">Upcoming Edit</div>
-      </div>
     </div>
-
-    <!-- PROJECT 6 -->
-    <div class="project-card reveal">
-      <div class="project-thumb">
-        <div class="play-btn">▶</div>
-        <div class="project-overlay">
-          <div class="project-type">Coming Soon</div>
-          <div class="project-title-ov">New Project</div>
-        </div>
-      </div>
-      <div class="project-info">
-        <div class="project-cat">Future Work</div>
-        <div class="project-name">Upcoming Edit</div>
-      </div>
-    </div>
-
   </div>
 </section>
+
 
 
 <!-- TOOLS -->
@@ -1290,6 +1362,35 @@ reveals.forEach(r=>obs.observe(r));
 const tools=document.querySelectorAll('.tool-card');
 const tObs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');}),{threshold:0.3});
 tools.forEach(t=>tObs.observe(t));
+
+// --- Modal Player ---
+const modal = document.querySelector('.video-modal');
+const modalFrame = document.querySelector('#modal-iframe');
+
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('click', () => {
+    
+    const vid = card.dataset.video;
+    const type = card.dataset.type;
+
+    let src = "";
+
+    if (type === "horizontal") {
+      src = `https://www.youtube.com/embed/${vid}?autoplay=1`;
+    } else {
+      src = `https://www.youtube.com/embed/${vid}?autoplay=1&modestbranding=1`;
+    }
+
+    modalFrame.src = src;
+    modal.classList.add('show');
+  });
+});
+
+document.querySelector('.close-modal').onclick = () => {
+  modal.classList.remove('show');
+  modalFrame.src = "";
+};
+
 </script>
 </body>
 </html>
